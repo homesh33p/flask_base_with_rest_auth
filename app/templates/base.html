@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}flask_interview{% endblock %}</title>
+        {% block styles %}
+        <!-- Bootstrap CSS -->
+        {{ bootstrap.load_css() }}
+        {% endblock %}    
+    
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block navbar %}
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">flask_interview</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>                
+                    {% endif %}
+                </ul>                
+            </div>
+        </nav>
+        {% endblock %}
+        
+        {% block content %}
+        <div class="container mt-4">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
+        
+            {% block page_content %}{% endblock %}
+        </div>
+        {% endblock %}
+        
+        {% block scripts %}
+        <!-- Optional JavaScript -->
+        {{ bootstrap.load_js() }}
+        {% endblock %}  
+    </body>
+
+</html>
+

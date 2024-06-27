@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "bootstrap4/form.html" as wtf %}
+
+{% block title %}Login{% endblock %}
+
+{% block page_content %}
+<p>
+    New user?
+    <a href="{{ url_for('auth.register') }}">
+    Click here to register
+    </a>
+</p>
+{{ wtf.render_form(form) }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% import "bootstrap4/form.html" as wtf %}
+
+{% block title %}Notification Form{% endblock %}
+
+{% block page_content %}
+    <h1>Notification Form</h1>
+    <div>
+        {{ wtf.render_form(form) }}
+    </div>
+{% endblock %}
